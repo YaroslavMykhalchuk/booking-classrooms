@@ -1,0 +1,30 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BookingController;
+
+use App\Http\Middleware\IsAdmin;
+use App\Http\Middleware\EnsureUserConfirmed;
+
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('home');
+
+Route::get('/', [BookingController::class, 'index'])->name('home');
+
+Route::get('register', [UserController::class, 'create'])->name('register');
+Route::post('register', [UserController::class, 'store'])->name('user.store');
+Route::get('login', [UserController::class, 'login'])->name('login');
+Route::post('login', [UserController::class, 'authinticate'])->name('authinticate');
+Route::post('logout', [UserController::class, 'logout'])->name('logout');
+
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+});
+
+Route::middleware(['auth', 'confirmed'])->group(function(){
+    Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
+    Route::delete('/booking/{id}', [BookingController::class, 'destroy'])->name('bookings.destroy');
+});
+
