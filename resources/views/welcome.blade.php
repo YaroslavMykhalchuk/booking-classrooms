@@ -123,19 +123,16 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        document.addEventListener('DOMContentLoaded', function () {
-          const buttons = document.querySelectorAll('.book-btn');
+        const buttons = document.querySelectorAll('.book-btn');
 
-          buttons.forEach(button => {
-            button.addEventListener('click', function () {
-              document.getElementById('room_id').value = this.dataset.roomId;
-              document.getElementById('day').value = this.dataset.day;
-              document.getElementById('pair').value = this.dataset.pair;
-              document.getElementById('group-name').value = '';
-            });
+        buttons.forEach(button => {
+          button.addEventListener('click', function () {
+            document.getElementById('room_id').value = this.dataset.roomId;
+            document.getElementById('day').value = this.dataset.day;
+            document.getElementById('pair').value = this.dataset.pair;
+            document.getElementById('group-name').value = '';
           });
         });
-
         document.querySelectorAll('[data-bs-target="#deleteModal"]').forEach(button => {
             button.addEventListener('click', function () {
                 const id = this.dataset.bookingId;
