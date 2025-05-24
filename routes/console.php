@@ -10,4 +10,4 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Schedule::call(new DeleteBookingsTask)->everyMinute()->name('delete-booking-task')->withoutOverlapping();
+Schedule::call(new DeleteBookingsTask)->weeklyOn(6, '18:00')->name('delete-booking-task')->withoutOverlapping();
