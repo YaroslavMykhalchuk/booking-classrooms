@@ -4,14 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+use App\Models\Room;
+
+class RoomsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.index');
+        $rooms = Room::select('id', 'name')->get();
+        // dd($rooms);
+
+        return view('rooms.index', compact('rooms'));
     }
 
     /**

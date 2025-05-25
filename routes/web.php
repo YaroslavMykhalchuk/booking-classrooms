@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RoomsController;
 
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\EnsureUserConfirmed;
@@ -19,8 +21,10 @@ Route::get('login', [UserController::class, 'login'])->name('login');
 Route::post('login', [UserController::class, 'authinticate'])->name('authinticate');
 Route::post('logout', [UserController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth', 'isAdmin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+
+    Route::get('/rooms', [RoomsController::class, 'index'])->name('rooms');
 });
 
 Route::middleware(['auth', 'confirmed'])->group(function(){

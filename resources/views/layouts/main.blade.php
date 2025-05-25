@@ -23,7 +23,7 @@
                 @auth
                     <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
                         @if (Auth::user()->role === 'admin')
-                            <a class="nav-link" aria-current="page" href="#">Dashboard</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('admin.dashboard') }}">Dashboard</a>
                         @endif
                     </li>
                     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
