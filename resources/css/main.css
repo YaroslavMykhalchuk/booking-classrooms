@@ -1,0 +1,30 @@
+.schedule {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    text-align: fixed;
+}
+.schedule th,
+.schedule td {
+    border: 1px solid #333;
+    padding: 6px;
+    text-align: center;
+}
+.schedule th {
+    background: #eee;
+}
+/* Вертикальний текст для назв днів */
+.schedule .day {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-weight: bold;
+    width: 2.5em;
+    vertical-align: middle;
+}
+/* Товста лінія між днями */
+.schedule .separator td {
+    border-top: 2px solid #333;
+    padding: 0;
+    height: 0;
+}
