@@ -14,7 +14,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::select('id', 'name', 'email', 'isConfirmed', 'role')
+            ->get();
+        return view('user.index', compact('users'));
     }
 
     /**

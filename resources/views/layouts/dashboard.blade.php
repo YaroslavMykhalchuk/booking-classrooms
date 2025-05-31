@@ -37,7 +37,7 @@
                     <a href="{{ route('admin.rooms') }}" class="nav-link {{ request()->routeIs('admin.rooms') ? 'active' : 'link-dark' }}"><i class="bi bi-door-open"></i> Аудиторії</a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link link-dark"><i class="bi bi-people"></i> Користувачі</a>
+                    <a href="{{ route('admin.users') }}" class="nav-link {{ request()->routeIs('admin.users') ? 'active' : 'link-dark' }}"><i class="bi bi-people"></i> Користувачі</a>
                 </li>
             </ul>
             <hr>

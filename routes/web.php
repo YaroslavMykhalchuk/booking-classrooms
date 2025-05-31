@@ -25,6 +25,7 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 
     Route::get('/rooms', [RoomsController::class, 'index'])->name('rooms');
+    Route::get('/users', [UserController::class, 'index'])->name('users');
 });
 
 Route::middleware(['auth', 'confirmed'])->group(function(){
