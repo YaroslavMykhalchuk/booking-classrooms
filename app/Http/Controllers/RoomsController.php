@@ -32,7 +32,15 @@ class RoomsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255', 'unique:rooms'],
+        ]);
+
+        Room::create([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('admin.rooms')->with('success', 'Аудиторія успішно додана!');
     }
 
     /**
@@ -54,16 +62,33 @@ class RoomsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'id' => 'required|exists:rooms,id',
+            'name' => ['required', 'string', 'max:255', 'unique:rooms,name,' . $request->id],
+        ]);
+
+        $room = Room::findOrFail($request->id);
+        $room->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('admin.rooms')->with('success', 'Аудиторія успішно оновлена!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        $request->validate([
+            'id' => 'required|exists:rooms,id',
+        ]);
+
+        $room = Room::findOrFail($request->id);
+        $room->delete();
+
+        return redirect()->route('admin.rooms')->with('success', 'Аудиторія успішно видалена!');
     }
 }

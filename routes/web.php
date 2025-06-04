@@ -19,12 +19,17 @@ Route::get('register', [UserController::class, 'create'])->name('register');
 Route::post('register', [UserController::class, 'store'])->name('user.store');
 Route::get('login', [UserController::class, 'login'])->name('login');
 Route::post('login', [UserController::class, 'authinticate'])->name('authinticate');
-Route::post('logout', [UserController::class, 'logout'])->name('logout');
+Route::middleware(['auth'])->group(function () {
+    Route::post('logout', [UserController::class, 'logout'])->name('logout');
+});
 
 Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 
     Route::get('/rooms', [RoomsController::class, 'index'])->name('rooms');
+    Route::post('/rooms/store', [RoomsController::class, 'store'])->name('rooms.store');
+    Route::put('/rooms/update', [RoomsController::class, 'update'])->name('rooms.update');
+    Route::delete('/rooms/destroy', [RoomsController::class, 'destroy'])->name('rooms.destroy');
     Route::get('/users', [UserController::class, 'index'])->name('users');
 });
 
