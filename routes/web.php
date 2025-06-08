@@ -30,7 +30,10 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
     Route::post('/rooms/store', [RoomsController::class, 'store'])->name('rooms.store');
     Route::put('/rooms/update', [RoomsController::class, 'update'])->name('rooms.update');
     Route::delete('/rooms/destroy', [RoomsController::class, 'destroy'])->name('rooms.destroy');
+
     Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::put('/users/update', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/destroy', [UserController::class, 'destroy'])->name('users.destroy');
 });
 
 Route::middleware(['auth', 'confirmed'])->group(function(){

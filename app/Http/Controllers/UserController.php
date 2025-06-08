@@ -101,16 +101,33 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'id' => 'required|exists:users,id',
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+
+        $user = User::findOrFail($request->id);
+        $user->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('admin.users')->with('success', 'Дані користувача успішно оновлені!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        $request->validate([
+            'id' => 'required|exists:users,id',
+        ]);
+
+        $user = User::findOrFail($request->id);
+        $user->delete();
+
+        return redirect()->route('admin.users')->with('success', 'Користувач успішно видалений!');
     }
 }
