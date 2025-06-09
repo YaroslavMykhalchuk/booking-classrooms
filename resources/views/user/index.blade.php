@@ -42,14 +42,16 @@
                             data-user-name="{{ $user->name }}">
                             Редагувати
                         </button>
-                        <button type="button" 
-                            class="btn btn-danger btn-sm" 
-                            id="delete-user-btn"
-                            data-bs-toggle="modal" 
-                            data-bs-target="#deleteUserModal"
-                            data-user-id="{{ $user->id }}">
-                            Видалити
-                        </button>
+                        @if(auth()->user()->id !== $user->id)
+                            <button type="button" 
+                                class="btn btn-danger btn-sm" 
+                                id="delete-user-btn"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#deleteUserModal"
+                                data-user-id="{{ $user->id }}">
+                                Видалити
+                            </button>
+                        @endif
                     </td>
                 </tr>
             @endforeach
