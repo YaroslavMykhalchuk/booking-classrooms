@@ -56,4 +56,17 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+
+    const confirmModal = document.getElementById('confirmUserModal');
+    if (confirmModal) {
+        confirmModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const userId = button.getAttribute('data-user-id');
+
+            const input = document.getElementById('confirm-user-id');
+            if (input) {
+                input.value = userId;
+            }
+        });
+    }
 });

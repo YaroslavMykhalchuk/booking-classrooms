@@ -26,7 +26,13 @@
                         @if ($user->isConfirmed)
                             <span class="badge bg-success">Так</span>
                         @else
-                            <span class="badge bg-secondary">Ні</span>
+                            <button type="button"
+                                class="btn btn-sm badge bg-secondary border-0" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#confirmUserModal"
+                                data-user-id="{{ $user->id }}">
+                                Ні
+                            </button>
                         @endif
                     <td class="text-end">
                         <button class="btn btn-warning btn-sm" 
@@ -93,6 +99,30 @@
                         @method('DELETE')
                         <input type="hidden" name="id" id="delete-user-id">
                         <button type="submit" class="btn btn-danger">Видалити</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Confirmed user modal --}}
+    <div class="modal fade" id="confirmUserModal" tabindex="-1" aria-labelledby="confirmUserLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="confirmUserLabel">Підтвердити користувача</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Ви впевнені, що хочете підтвердити цього користувача?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+                    <form action="{{ route('admin.users.confirm') }}" method="POST" id="confirm-user-form">
+                        @csrf
+                        @method('PUT')
+                        <input type="hidden" name="id" id="confirm-user-id">
+                        <button type="submit" class="btn btn-success">Підтвердити</button>
                     </form>
                 </div>
             </div>

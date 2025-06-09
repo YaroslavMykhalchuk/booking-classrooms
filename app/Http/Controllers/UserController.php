@@ -130,4 +130,17 @@ class UserController extends Controller
 
         return redirect()->route('admin.users')->with('success', 'Користувач успішно видалений!');
     }
+
+    public function confirmUser(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:users,id',
+        ]);
+
+        $user = User::findOrFail($request->id);
+        $user->isConfirmed = true;
+        $user->save();
+
+        return redirect()->route('admin.users')->with('success', 'Користувача успішно підтверджено!');
+    }
 }
