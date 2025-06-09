@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Room;
+use App\Models\Booking;
 
 class RoomsController extends Controller
 {
@@ -90,5 +91,35 @@ class RoomsController extends Controller
         $room->delete();
 
         return redirect()->route('admin.rooms')->with('success', 'Аудиторія успішно видалена!');
+    }
+
+    public function maintenance(Request $request)
+    {
+        $request->validate([
+            'room_id' => 'required',
+            'day' => 'required|integer|between:1,5',
+            'group_name' => 'required|string|max:255',
+        ]);
+
+        $pairNumbers = range(1, 6);
+        if ($request->room_id == 0) {
+            $roomIds = Room::pluck('id');
+        } else {
+            $roomIds = collect([$request->room_id]);
+        }
+
+        foreach ($roomIds as $roomId) {
+            foreach ($pairNumbers as $pair) {
+                Booking::updateOrCreate([
+                    'room_id' => $roomId,
+                    'day_week' => $request->day,
+                    'pair_number' => $pair,
+                    'group_name' => $request->group_name,
+                    'user_id' => auth()->id(),
+                ]);
+            }
+        }
+
+        return redirect()->route('admin.rooms')->with('success', 'Обслуговування аудиторій заплановано!');
     }
 }

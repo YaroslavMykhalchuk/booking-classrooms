@@ -7,6 +7,9 @@
     <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addRoomModal">
         Додати аудиторію
     </button>
+    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#maintenanceRoomModal">
+        Обслуговування аудиторій
+    </button>
 
     <table class="table">
         <thead>
@@ -116,6 +119,46 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+
+    {{-- Maintenance room modal --}}
+    <div class="modal fade" id="maintenanceRoomModal" tabindex="-1" aria-labelledby="maintenanceRoomLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="{{ route('admin.rooms.maintenance') }}" method="POST" class="modal-content">
+                @csrf
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="maintenanceRoomLabel">Обслуговування аудиторій</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="maintenance-room-select" class="form-label">Вкажіть номер аудиторії для обслуговування:</label>
+                        <select name="room_id" id="maintenance-room-select" class="form-select mb-3">
+                            <option value="" selected disabled>Оберіть аудиторію</option>
+                            @foreach ($rooms as $room)
+                                <option value="{{ $room->id }}">{{ $room->name }}</option>
+                            @endforeach
+                            <option value="0">Всі аудиторії</option>
+                        </select>
+                        <label for="maintenance-day" class="form-label">Вкажіть день обслуговування:</label>
+                        <select name="day" id="maintenance-day" class="form-select mb-3">
+                            <option value="" selected disabled>Оберіть день</option>
+                            <option value="1">Понеділок</option>
+                            <option value="2">Вівторок</option>
+                            <option value="3">Середа</option>
+                            <option value="4">Четвер</option>
+                            <option value="5">Пʼятниця</option>
+                        </select>
+                        <label for="maintenance-description" class="form-label">Вкажіть причину обслуговування:</label>
+                        <input type="text" name="group_name" id="maintenance-description" class="form-control" placeholder="Причина обслуговування" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+                    <button type="submit" class="btn btn-primary">Почати обслуговування</button>
+                </div>
+            </form>
         </div>
     </div>
 @endsection

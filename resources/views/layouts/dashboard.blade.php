@@ -25,13 +25,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
             </div>
             
-            <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none d-none d-md-flex">
-            <span class="fs-4">Admin Panel</span>
+            <a href="{{ route('home') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none d-none d-md-flex">
+            <span class="fs-5">Повернутися назад</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : 'link-dark' }}"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : 'link-dark' }}"><i class="bi bi-speedometer2"></i> Адмін панель</a>
                 </li>
                 <li>
                     <a href="{{ route('admin.rooms') }}" class="nav-link {{ request()->routeIs('admin.rooms') ? 'active' : 'link-dark' }}"><i class="bi bi-door-open"></i> Аудиторії</a>
