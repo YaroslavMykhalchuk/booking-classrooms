@@ -21,6 +21,7 @@ Route::get('login', [UserController::class, 'login'])->name('login');
 Route::post('login', [UserController::class, 'authinticate'])->name('authinticate');
 Route::middleware(['auth'])->group(function () {
     Route::post('logout', [UserController::class, 'logout'])->name('logout');
+    Route::post('change-password', [UserController::class, 'changePassword'])->name('change.password');
 });
 
 Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {

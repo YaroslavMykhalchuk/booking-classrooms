@@ -46,6 +46,16 @@
                     <strong>{{ Auth::user()->name }}</strong>
                 </a>
                 <ul class="dropdown-menu text-small shadow">
+                    <li>
+                        <button type="button" 
+                            class="dropdown-item" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#changePasswordModal" 
+                            href="#">
+                            Змінити пароль
+                        </button>
+                    </li>
+                    <li><button class="dropdown-item" href="#">Змінити пошту</abutton></li>
                     <li><a class="dropdown-item" href="{{ route('logout') }}">Вийти</a></li>
                 </ul>
             </div>
@@ -55,6 +65,38 @@
     <main class="main my-3">
         <div class="container">
             @yield('content')
+        </div>
+
+        {{-- change password modal --}}
+        <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="changePasswordModalLabel">Змінити пароль</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form>
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="currentPassword" class="form-label">Поточний пароль</label>
+                            <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newPassword" class="form-label">Новий пароль</label>
+                            <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmNewPassword" class="form-label">Підтвердіть новий пароль</label>
+                            <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+                        <button type="submit" class="btn btn-primary" id="changePasswordButton">Змінити пароль</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>

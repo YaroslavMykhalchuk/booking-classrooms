@@ -143,4 +143,23 @@ class UserController extends Controller
 
         return redirect()->route('admin.users')->with('success', 'Користувача успішно підтверджено!');
     }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => ['required', 'string'],
+            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $user = Auth::user();
+
+        if (!password_verify($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+        }
+
+        $user->password = bcrypt($request->new_password);
+        $user->save();
+
+        return redirect()->route('home')->with('success', 'Password changed successfully!');
+    }
 }
