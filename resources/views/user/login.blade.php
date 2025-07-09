@@ -27,7 +27,8 @@
                 <button type="submit" class="btn btn-primary">Login</button>
                 <a href="{{ route('register') }}" class="ms-3 btn btn-link">Not registered?</a>
             </form>
-
+            
         </div>
+        <a href="{{ route('password.request') }}" class="ms-0 px-0 btn btn-link">Забули пароль?</a>
     </div>
 @endsection
