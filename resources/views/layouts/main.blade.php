@@ -11,34 +11,34 @@
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-        <a class="navbar-brand" href="{{ route('home') }}">Booking classrooms</a>
+        <a class="navbar-brand" href="{{ route('home') }}">Бронювання аудиторій</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item {{ Request::is('home') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('home') }}">Home</a>
+                <a class="nav-link" href="{{ route('home') }}">Головна</a>
             </li>
             @if(Route::has('login'))
                 @auth
                     <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
                         @if (Auth::user()->role === 'admin')
-                            <a class="nav-link" aria-current="page" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('admin.dashboard') }}">Адмін панель</a>
                         @endif
                     </li>
                     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                         @csrf
                         <li class="nav-item">
-                            <button type="submit" class="nav-link ">Logout</button>
+                            <button type="submit" class="nav-link ">Вийти</button>
                         </li>
                     </form>
                 @else
                     <li class="nav-item {{ Request::is('register') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('register') }}">Register</a>
+                        <a class="nav-link" href="{{ route('register') }}">Реєстрація</a>
                     </li>
                     <li class="nav-item {{ Request::is('login') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        <a class="nav-link" href="{{ route('login') }}">Вхід</a>
                     </li>
                 @endauth
             @endif

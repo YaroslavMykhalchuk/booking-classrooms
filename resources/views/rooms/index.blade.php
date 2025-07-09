@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Welcome to dashboard')
+@section('title', 'Ласкаво просимо до панелі адміністратора')
 @section('content')
     <h1 class="mb-4">Список аудиторій</h1>
     <p class="lead">Тут ви можете переглядати, додавати, змінювати та видаляти аудиторії для бронювання.</p>

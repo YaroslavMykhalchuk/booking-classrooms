@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title', 'Welcome to Booking classrooms')
 @section('content')
-    <h1>Main Page</h1>
+    <h1>Головна сторінка</h1>
 
     <table class="schedule">
       <thead>
@@ -74,7 +74,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Booking classroom</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Бронювання аудиторій</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <form id="bookingForm" method="POST" action="{{ route('bookings.store') }}">
@@ -84,13 +84,13 @@
               <input type="hidden" name="day" id="day">
               <input type="hidden" name="pair" id="pair">
               <div class="mb-3">
-                <label for="modal-group-name" class="form-label">Group name:</label>
+                <label for="modal-group-name" class="form-label">Назва групи:</label>
                 <input type="text" name="group_name" id="group-name" class="form-control" required>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+              <button type="submit" class="btn btn-primary">Зберегти</button>
             </div>
           </form>
         </div>
@@ -102,19 +102,19 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete booking</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Видалити бронювання</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <p>Are you sure you want to delete this booking?</p>
+            <p>Ви впевнені, що хочете видалити бронювання?</p>
           </div>
           <div class="modal-footer">
             <form id="deleteForm" method="POST">
               @csrf
               @method('DELETE')
               <input type="hidden" name="id" id="booking_id">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-danger delete-booking-btn">Delete booking</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+              <button type="submit" class="btn btn-danger delete-booking-btn">Видалити бронювання</button>
             </form>
           </div>
         </div>
