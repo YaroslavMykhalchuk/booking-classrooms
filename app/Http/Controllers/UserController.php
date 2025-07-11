@@ -162,4 +162,17 @@ class UserController extends Controller
 
         return redirect()->route('home')->with('success', 'Password changed successfully!');
     }
+
+    public function changeEmail(Request $request)
+    {
+        $request->validate([
+            'newEmail' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+        ]);
+
+        $user = Auth::user();
+        $user->email = $request->newEmail;
+        $user->save();
+
+        return redirect()->route('home')->with('success', 'Email changed successfully!');
+    }
 }

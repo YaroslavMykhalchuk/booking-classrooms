@@ -50,12 +50,18 @@
                         <button type="button" 
                             class="dropdown-item" 
                             data-bs-toggle="modal" 
-                            data-bs-target="#changePasswordModal" 
-                            href="#">
+                            data-bs-target="#changePasswordModal">
                             Змінити пароль
                         </button>
                     </li>
-                    <li><button class="dropdown-item" href="#">Змінити пошту</abutton></li>
+                    <li>
+                        <button type="button" 
+                            class="dropdown-item"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#changeEmailModal">
+                            Змінити пошту
+                        </button>
+                    </li>
                     <li><a class="dropdown-item" href="{{ route('logout') }}">Вийти</a></li>
                 </ul>
             </div>
@@ -98,7 +104,32 @@
                 </form>
             </div>
         </div>
+
     </main>
+    {{-- change email modal --}}
+    <div class="modal fade" id="changeEmailModal" tabindex="-1" aria-labelledby="changeEmailModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="changeEmailModalLabel">Змінити пошту</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('admin.change.email') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="newEmail" class="form-label">Введіть нову пошту</label>
+                            <input type="email" class="form-control" id="newEmail" name="newEmail" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+                        <button type="submit" class="btn btn-primary" id="changeEmailButton">Змінити пошту</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 </html>

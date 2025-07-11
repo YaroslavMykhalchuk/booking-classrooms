@@ -39,7 +39,8 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
     Route::put('/users/update', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/destroy', [UserController::class, 'destroy'])->name('users.destroy');
     Route::put('/users/confirm', [UserController::class, 'confirmUser'])->name('users.confirm');
-
+    
+    Route::post('/change-email', [UserController::class, 'changeEmail'])->name('change.email');
 });
 
 Route::middleware(['auth', 'confirmed'])->group(function(){
