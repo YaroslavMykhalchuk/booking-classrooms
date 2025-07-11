@@ -62,7 +62,12 @@
                             Змінити пошту
                         </button>
                     </li>
-                    <li><a class="dropdown-item" href="{{ route('logout') }}">Вийти</a></li>
+                    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                        @csrf
+                        <li class="dropdown-item">
+                            <button type="submit" class="nav-link ">Вийти</button>
+                        </li>
+                    </form>
                 </ul>
             </div>
         </div>
@@ -81,7 +86,7 @@
                     <h1 class="modal-title fs-5" id="changePasswordModalLabel">Змінити пароль</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form>
+                <form action="{{ route('change.password') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
@@ -94,7 +99,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="confirmNewPassword" class="form-label">Підтвердіть новий пароль</label>
-                            <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" required>
+                            <input type="password" class="form-control" id="confirmNewPassword" name="newPassword_confirmation" required>
                         </div>
                     </div>
                     <div class="modal-footer">

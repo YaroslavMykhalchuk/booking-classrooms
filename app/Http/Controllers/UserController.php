@@ -147,17 +147,17 @@ class UserController extends Controller
     public function changePassword(Request $request)
     {
         $request->validate([
-            'current_password' => ['required', 'string'],
-            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
+            'currentPassword' => ['required', 'string'],
+            'newPassword' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
         $user = Auth::user();
 
-        if (!password_verify($request->current_password, $user->password)) {
+        if (!password_verify($request->currentPassword, $user->password)) {
             return back()->withErrors(['current_password' => 'Current password is incorrect.']);
         }
 
-        $user->password = bcrypt($request->new_password);
+        $user->password = bcrypt($request->newPassword);
         $user->save();
 
         return redirect()->route('home')->with('success', 'Password changed successfully!');
